@@ -6,12 +6,16 @@
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
+using namespace std;
 
 class UKF {
 public:
 
   ///* initially set to false, set to true in first call of ProcessMeasurement
   bool is_initialized_;
+
+  ///* previous timestamp
+  long previous_timestamp_;
 
   ///* if this is false, laser measurements will be ignored (except for init)
   bool use_laser_;
@@ -24,6 +28,9 @@ public:
 
   ///* state covariance matrix
   MatrixXd P_;
+
+  ///* augmented sigma points matrix
+  MatrixXd Xsig_aug_;
 
   ///* predicted sigma points matrix
   MatrixXd Xsig_pred_;
@@ -60,6 +67,12 @@ public:
 
   ///* Augmented state dimension
   int n_aug_;
+
+  ///* Number of sigma points (2*n_x_ + 1)
+  int n_sigma_;
+
+  ///* set measurement dimension, radar can measure r, phi, and r_dot
+  int n_z;
 
   ///* Sigma point spreading parameter
   double lambda_;
@@ -104,6 +117,16 @@ public:
    * @param meas_package The measurement at k+1
    */
   void UpdateRadar(MeasurementPackage meas_package);
+
+
+  void AugmentedSigmaPoints(MatrixXd* Xsig_out);
+  void SigmaPointPrediction(MatrixXd* Xsig_out);
+  void PredictMeanAndCovariance(VectorXd* x_pred, MatrixXd* P_pred);
+  void PredictRadarMeasurement(VectorXd* z_out, MatrixXd* S_out);
+  void UpdateState(VectorXd* x_out, MatrixXd* P_out);
+
+
+  
 };
 
 #endif /* UKF_H */
