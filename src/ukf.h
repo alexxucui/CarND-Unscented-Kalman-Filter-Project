@@ -18,7 +18,7 @@ public:
   long previous_timestamp_;
 
   ///* if this is false, laser measurements will be ignored (except for init)
-  bool use_laser_;
+  bool use_lidar_;
 
   ///* if this is false, radar measurements will be ignored (except for init)
   bool use_radar_;
@@ -69,10 +69,7 @@ public:
   int n_aug_;
 
   ///* Number of sigma points (2*n_x_ + 1)
-  int n_sigma_;
-
-  ///* set measurement dimension, radar can measure r, phi, and r_dot
-  int n_z;
+  int n_aug_sigma_;
 
   ///* Sigma point spreading parameter
   double lambda_;
@@ -80,8 +77,8 @@ public:
   ///* the current NIS for radar
   double NIS_radar_;
 
-  ///* the current NIS for laser
-  double NIS_laser_;
+  ///* the current NIS for lidar
+  double NIS_lidar_;
 
   /**
    * Constructor
@@ -118,14 +115,24 @@ public:
    */
   void UpdateRadar(MeasurementPackage meas_package);
 
+  // generate augmented sigma points
+  void AugmentedSigmaPoints(VectorXd &x, MatrixXd &P, MatrixXd &Xsig_aug);
 
-  void AugmentedSigmaPoints(MatrixXd* Xsig_out);
-  void SigmaPointPrediction(MatrixXd* Xsig_out);
-  void PredictMeanAndCovariance(VectorXd* x_pred, MatrixXd* P_pred);
-  void PredictRadarMeasurement(VectorXd* z_out, MatrixXd* S_out);
-  void UpdateState(VectorXd* x_out, MatrixXd* P_out);
+  // predict sigma points
+  void SigmaPointPrediction(double delta_t, MatrixXd &Xsig_aug, Martrix &Xsig_pred);
 
+  // calculate the mean and variance
+  void PredictMeanAndCovariance(MatrixXd &Xsig_pred, VectorXd &x, MatrixXd &P);
 
+  // predict radar measurement
+  void PredictRadarMeasurement(MatrixXd &Xsig_pred, MatrixXd &Zsig, VectorXd &z_pred, MatrixXd &S);
+
+  // predict lidar measurement 
+  void PredictLidarMeasurement(MatrixXd &Xsig_pred, MatrixXd &Zsig, VectorXd &z_pred, MatrixXd &S);
+
+  // update the measurement
+  void UpdateState(VectorXd &z, VectorXd &z_pred, MatrixXd &S,
+                   MatrixXd &Xsig_pred, MatrixXd &Zsig, VectorXd &x, MatrixXd &P);
   
 };
 
