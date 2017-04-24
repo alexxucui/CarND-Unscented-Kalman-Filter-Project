@@ -31,6 +31,57 @@ using the following settings:
 
 Please stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html) as much as possible.
 
+
+## Lidar and Radar Data Fusion Pipline
+
+<img src="https://github.com/alexxucui/CarND-Unscented-Kalman-Filter-Project/blob/master/img/ukfpipelane.PNG" width="700">
+
+## Evaluation (RMSE)
+
+For Sample Data 1:
+
+| RMSE |     R    |     L    |     RL    |
+|:----:|:--------:|:--------:|:---------:|
+|  px  | 0.130167 | 0.105896 |  0.066121 |
+|  py  | 0.134765 | 0.107821 | 0.0752295 |
+|  vx  | 0.613422 | 0.724494 |  0.566673 |
+|  vy  | 0.581875 | 0.638341 |  0.570433 |
+
+For Sample Data 2:
+
+| RMSE |     R    |     L    |    RL    |
+|:----:|:--------:|:--------:|:--------:|
+|  px  |  1.57139 | 0.217995 | 0.184595 |
+|  py  | 0.812246 | 0.194325 | 0.180058 |
+|  vx  | 0.938841 |  0.93745 | 0.223678 |
+|  vy  |  1.16265 | 0.833882 |  0.24774 |
+
+R: Radar L: Lidar
+
+## Visulization 
+Output data:   `/data`
+Images: `/visuliazation`
+
+Kalman Filter Esitmate - Measurement - Ground Truth
+
+Sample Data 1 - RL
+![](https://github.com/alexxucui/CarND-Extended-Kalman-Filter-Project/blob/master/visualization/sample1%20-%20LR.png)
+
+Sample Data 1 - R
+![](https://github.com/alexxucui/CarND-Extended-Kalman-Filter-Project/blob/master/visualization/sample1%20-%20R.png)
+
+Sample Data 1 - L
+![](https://github.com/alexxucui/CarND-Extended-Kalman-Filter-Project/blob/master/visualization/sample1%20-%20L.png)
+
+Sample Data 2 - RL
+![](https://github.com/alexxucui/CarND-Extended-Kalman-Filter-Project/blob/master/visualization/sample2%20-%20LR.png)
+
+Sample Data 2 - R
+![](https://github.com/alexxucui/CarND-Extended-Kalman-Filter-Project/blob/master/visualization/sample2%20-%20R.png)
+
+Sample Data 2 - L
+![](https://github.com/alexxucui/CarND-Extended-Kalman-Filter-Project/blob/master/visualization/sample2%20-%20L.png)
+
 ## Generating Additional Data
 
 This is optional!
