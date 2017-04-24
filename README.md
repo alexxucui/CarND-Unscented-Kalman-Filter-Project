@@ -1,7 +1,5 @@
-# Unscented Kalman Filter Project Starter Code
+# Unscented Kalman Filter Project
 Self-Driving Car Engineer Nanodegree Program
-
----
 
 ## Dependencies
 
@@ -89,6 +87,5 @@ Sample Data 2 - NIS
 
 ## Conclusions
 
-* I have constructed UKF　model to predict the px, py, vx and vy.
 * From RMSE table and compared with EKF project, the UKF model performs on par in sample data 1 but improves in sample data 2, expecially in vx and vy esitmation.
 * From the visulization, UKF model predicts better in a non-linear movement, especally during a sharp turn where it doesn't overshoot. From NIS consistency check, the model is consistent for sample data 1 but slighly over-estimate the uncertainty for sample data 2.
