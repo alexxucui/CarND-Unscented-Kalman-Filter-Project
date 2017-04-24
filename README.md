@@ -36,7 +36,7 @@ Please stick to [Google's C++ style guide](https://google.github.io/styleguide/c
 
 <img src="https://github.com/alexxucui/CarND-Unscented-Kalman-Filter-Project/blob/master/img/ukfpipelane.PNG" width="700">
 
-## Evaluation (RMSE)
+## UKF Evaluation (RMSE)
 
 For Sample Data 1:
 
@@ -58,6 +58,27 @@ For Sample Data 2:
 
 N/A: LLT failed!
 R: Radar L: Lidar
+
+## Compare with EKF
+
+For Sample Data 1:
+
+| RMSE |     R    |     L    |     RL    |
+|:----:|:--------:|:--------:|:---------:|
+|  px  | 0.130167 | 0.105896 | 0.0651649 |
+|  py  | 0.134765 | 0.107821 | 0.0605378 |
+|  vx  | 0.613422 | 0.724494 |  0.54319  |
+|  vy  | 0.581875 | 0.638341 |  0.544191 |
+
+For Sample Data 2:
+
+| RMSE |     R    |     L    |    RL    |
+|:----:|:--------:|:--------:|:--------:|
+|  px  |  1.57139 | 0.217995 | 0.185465 |
+|  py  | 0.812246 | 0.194325 | 0.190254 |
+|  vx  | 0.938841 |  0.93745 | 0.476509 |
+|  vy  |  1.16265 | 0.833882 | 0.810787 |
+
 
 ## Visulization 
 Output data:   `/data`
