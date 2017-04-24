@@ -11,7 +11,7 @@ UKF::UKF() {
   previous_timestamp_ = 0;
 
   // if this is false, laser measurements will be ignored (except during init)
-  use_lidar_ = true;
+  use_lidar_ = false;
 
   // if this is false, radar measurements will be ignored (except during init)
   use_radar_ = true;
