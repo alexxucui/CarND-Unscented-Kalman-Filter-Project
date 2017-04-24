@@ -3,6 +3,7 @@
 #include "Eigen/Dense"
 #include "measurement_package.h"
 #include <vector>
+#include "tools.h"
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
@@ -68,7 +69,7 @@ public:
   ///* Augmented state dimension
   int n_aug_;
 
-  ///* Number of sigma points (2*n_x_ + 1)
+  ///* Number of sigma points (2*n_aug_ + 1)
   int n_aug_sigma_;
 
   ///* Sigma point spreading parameter
@@ -116,23 +117,23 @@ public:
   void UpdateRadar(MeasurementPackage meas_package);
 
   // generate augmented sigma points
-  void AugmentedSigmaPoints(VectorXd &x, MatrixXd &P, MatrixXd &Xsig_aug);
+  void AugmentedSigmaPoints(const VectorXd &x, const MatrixXd &P, MatrixXd &Xsig_aug);
 
   // predict sigma points
-  void SigmaPointPrediction(double delta_t, MatrixXd &Xsig_aug, Martrix &Xsig_pred);
+  void SigmaPointPrediction(double delta_t, const MatrixXd &Xsig_aug, MatrixXd &Xsig_pred);
 
   // calculate the mean and variance
-  void PredictMeanAndCovariance(MatrixXd &Xsig_pred, VectorXd &x, MatrixXd &P);
+  void PredictMeanAndCovariance(const MatrixXd &Xsig_pred, VectorXd &x, MatrixXd &P);
 
   // predict radar measurement
-  void PredictRadarMeasurement(MatrixXd &Xsig_pred, MatrixXd &Zsig, VectorXd &z_pred, MatrixXd &S);
+  void PredictRadarMeasurement(const MatrixXd &Xsig_pred, MatrixXd &Zsig, VectorXd &z_pred, MatrixXd &S);
 
   // predict lidar measurement 
-  void PredictLidarMeasurement(MatrixXd &Xsig_pred, MatrixXd &Zsig, VectorXd &z_pred, MatrixXd &S);
+  void PredictLidarMeasurement(const MatrixXd &Xsig_pred, MatrixXd &Zsig, VectorXd &z_pred, MatrixXd &S);
 
   // update the measurement
-  void UpdateState(VectorXd &z, VectorXd &z_pred, MatrixXd &S,
-                   MatrixXd &Xsig_pred, MatrixXd &Zsig, VectorXd &x, MatrixXd &P);
+  void UpdateState(const VectorXd &z, const VectorXd &z_pred, const MatrixXd &S,
+                   const MatrixXd &Xsig_pred, const MatrixXd &Zsig, VectorXd &x, MatrixXd &P);
   
 };
 
